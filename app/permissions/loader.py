@@ -1,6 +1,6 @@
-"""权限检查器加载器
+"""Permission checker loader.
 
-根据配置动态加载权限检查器实例。
+Dynamically loads a permission checker instance from configuration.
 """
 from __future__ import annotations
 
@@ -12,19 +12,19 @@ from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-# 全局单例
+# Global singleton.
 _checker_instance: Any = None
 
 
 def load_permission_checker() -> Any:
-    """加载权限检查器实例
+    """Load the permission checker instance.
     
-    根据配置 PERMISSION_MODE 加载对应的权限检查器：
-    - none: 使用 NoOpPermissionChecker（无权限检查）
-    - plugin: 使用配置的插件类
+    Loads the checker based on PERMISSION_MODE:
+    - none: uses NoOpPermissionChecker with no permission checks
+    - plugin: uses the configured plugin class
     
     Returns:
-        权限检查器实例
+        Permission checker instance.
     """
     global _checker_instance
     
@@ -55,9 +55,9 @@ def load_permission_checker() -> Any:
 
 
 def reset_permission_checker() -> None:
-    """重置权限检查器实例
+    """Reset the permission checker instance.
     
-    用于测试或重新加载配置时调用。
+    Used by tests or when reloading configuration.
     """
     global _checker_instance
     _checker_instance = None
